@@ -1,0 +1,9 @@
+# Composer
+/vendor/
+/composer.phar
+
+# PhpStorm
+/.idea/
+
+# Vim
+/**/*.swp

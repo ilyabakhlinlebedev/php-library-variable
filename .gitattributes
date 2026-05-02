@@ -1,0 +1,17 @@
+# Git
+/**/.gitattributes eol=lf export-ignore text
+/**/.gitignore eol=lf export-ignore text
+/**/.gitkeep eol=lf export-ignore text
+
+# JSON
+/**/*.json eol=lf text
+/**/*.lock eol=lf text
+
+# Markdown
+/**/*.md diff=markdown eol=lf text
+
+# PHP
+/**/*.php diff=php eol=lf text
+
+# XML
+/**/*.xml diff=html eol=lf text

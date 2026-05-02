@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         beStrictAboutChangesToGlobalState="true"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         bootstrap="vendor/autoload.php"
+         cacheResult="false"
+         requireCoverageMetadata="true">
+    <coverage>
+        <report>
+            <text outputFile="php://stdout" showUncoveredFiles="true"/>
+        </report>
+    </coverage>
+    <source>
+        <include>
+            <directory>source/PHP/Classes/</directory>
+        </include>
+    </source>
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>tests/PHP/Classes/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

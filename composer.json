@@ -1,0 +1,33 @@
+{
+    "authors": [
+        {
+            "name": "Ilya Bakhlin Lebedev",
+            "email": "contact@ilyabakhlinlebedev.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IlyaBakhlinLebedev\\Variable\\": "source/PHP/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IlyaBakhlinLebedev\\Variable\\Tests\\": "tests/PHP/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "description": "An object-oriented solution for handling variables.",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "name": "ilyabakhlinlebedev/variable",
+    "require": {
+        "illuminate/support": "^13.0",
+        "php": "^8.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0"
+    },
+    "type": "library"
+}
