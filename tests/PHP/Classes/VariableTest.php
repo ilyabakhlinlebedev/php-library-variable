@@ -179,6 +179,48 @@ class VariableTest extends TestCase implements VariableTestInterface
     /**
      * @return void
      */
+    public function testMethodIsFloatDefault(): void
+    {
+        $variable = new Variable();
+
+        $variableIsFloat = $variable->isFloat();
+        $this->assertIsObject($variableIsFloat);
+        $this->assertFalse($variableIsFloat->getValue());
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsFloatFalse")]
+    public function testMethodIsFloatFalse(mixed $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsFloat = $variable->isFloat();
+        $this->assertIsObject($variableIsFloat);
+        $this->assertFalse($variableIsFloat->getValue());
+    }
+
+    /**
+     * @param float $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsFloatTrue")]
+    public function testMethodIsFloatTrue(float $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsFloat = $variable->isFloat();
+        $this->assertIsObject($variableIsFloat);
+        $this->assertTrue($variableIsFloat->getValue());
+    }
+
+    /**
+     * @return void
+     */
     public function testMethodIsIntegerDefault(): void
     {
         $variable = new Variable();
@@ -287,6 +329,27 @@ class VariableTest extends TestCase implements VariableTestInterface
     public static function provideMethodIsBooleanTrue(): array
     {
         return self::getValuesBoolean();
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsFloatFalse(): array
+    {
+        return array_merge(
+            self::getValuesBoolean(),
+            self::getValuesInteger(),
+            self::getValuesNull(),
+            self::getValuesString(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsFloatTrue(): array
+    {
+        return self::getValuesFloat();
     }
 
     /**
