@@ -51,6 +51,14 @@ class Variable implements VariableInterface
     }
 
     /**
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
+    public function isBoolean(): VariableInterface
+    {
+        return new self(is_bool($this->getValue()));
+    }
+
+    /**
      * @param mixed $value
      */
     public function __construct(mixed $value = null)

@@ -31,6 +31,11 @@ interface Variable
     public function getValue(): mixed;
 
     /**
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
+    public function isBoolean(): Variable;
+
+    /**
      * @param mixed $value
      */
     public function __construct(mixed $value = null);

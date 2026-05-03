@@ -41,7 +41,38 @@ interface VariableTest
     public function testMethodGetValueDefault(): void;
 
     /**
+     * @return void
+     */
+    public function testMethodIsBooleanDefault(): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsBooleanFalse")]
+    public function testMethodIsBooleanFalse(mixed $value): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsBooleanTrue")]
+    public function testMethodIsBooleanTrue(mixed $value): void;
+
+    /**
      * @return array
      */
     public static function provideMethodGetValue(): array;
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsBooleanFalse(): array;
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsBooleanTrue(): array;
 }

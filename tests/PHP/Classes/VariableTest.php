@@ -33,6 +33,83 @@ use PHPUnit\Framework\Attributes\DataProvider;
 class VariableTest extends TestCase implements VariableTestInterface
 {
     /**
+     * @return array
+     */
+    private static function getValues(): array
+    {
+        return array_merge(
+            self::getValuesBoolean(),
+            self::getValuesFloat(),
+            self::getValuesInteger(),
+            self::getValuesNull(),
+            self::getValuesString(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    private static function getValuesBoolean(): array
+    {
+        return [
+            [
+                false,
+            ],
+            [
+                true,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private static function getValuesFloat(): array
+    {
+        return [
+            [
+                0.0,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private static function getValuesInteger(): array
+    {
+        return [
+            [
+                0,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private static function getValuesNull(): array
+    {
+        return [
+            [
+                null,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private static function getValuesString(): array
+    {
+        return [
+            [
+                "",
+            ],
+        ];
+    }
+
+    /**
      * @param mixed $value
      *
      * @return void
@@ -54,7 +131,46 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable();
 
         $variableValue = $variable->getValue();
-        $this->assertSame(null, $variableValue);
+        $this->assertNull($variableValue);
+    }
+
+    /**
+     * @return void
+     */
+    public function testMethodIsBooleanDefault(): void
+    {
+        $variable = new Variable();
+
+        $variableIsBoolean = $variable->isBoolean();
+        $this->assertFalse($variableIsBoolean->getValue());
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsBooleanFalse")]
+    public function testMethodIsBooleanFalse(mixed $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsBoolean = $variable->isBoolean();
+        $this->assertFalse($variableIsBoolean->getValue());
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsBooleanTrue")]
+    public function testMethodIsBooleanTrue(mixed $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsBoolean = $variable->isBoolean();
+        $this->assertTrue($variableIsBoolean->getValue());
     }
 
     /**
@@ -62,10 +178,27 @@ class VariableTest extends TestCase implements VariableTestInterface
      */
     public static function provideMethodGetValue(): array
     {
-        return [
-            [
-                "value" => null,
-            ],
-        ];
+        return self::getValues();
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsBooleanFalse(): array
+    {
+        return array_merge(
+            self::getValuesInteger(),
+            self::getValuesFloat(),
+            self::getValuesNull(),
+            self::getValuesString(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsBooleanTrue(): array
+    {
+        return self::getValuesBoolean();
     }
 }
