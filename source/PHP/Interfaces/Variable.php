@@ -38,6 +38,11 @@ interface Variable
     /**
      * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
      */
+    public function isInteger(): Variable;
+
+    /**
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
     public function isString(): Variable;
 
     /**

@@ -142,6 +142,7 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable();
 
         $variableIsBoolean = $variable->isBoolean();
+        $this->assertIsObject($variableIsBoolean);
         $this->assertFalse($variableIsBoolean->getValue());
     }
 
@@ -156,6 +157,7 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable($value);
 
         $variableIsBoolean = $variable->isBoolean();
+        $this->assertIsObject($variableIsBoolean);
         $this->assertFalse($variableIsBoolean->getValue());
     }
 
@@ -170,7 +172,50 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable($value);
 
         $variableIsBoolean = $variable->isBoolean();
+        $this->assertIsObject($variableIsBoolean);
         $this->assertTrue($variableIsBoolean->getValue());
+    }
+
+    /**
+     * @return void
+     */
+    public function testMethodIsIntegerDefault(): void
+    {
+        $variable = new Variable();
+
+        $variableIsInteger = $variable->isInteger();
+        $this->assertIsObject($variableIsInteger);
+        $this->assertFalse($variableIsInteger->getValue());
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsIntegerFalse")]
+    public function testMethodIsIntegerFalse(mixed $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsInteger = $variable->isInteger();
+        $this->assertIsObject($variableIsInteger);
+        $this->assertFalse($variableIsInteger->getValue());
+    }
+
+    /**
+     * @param int $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsIntegerTrue")]
+    public function testMethodIsIntegerTrue(int $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsInteger = $variable->isInteger();
+        $this->assertIsObject($variableIsInteger);
+        $this->assertTrue($variableIsInteger->getValue());
     }
 
     /**
@@ -181,6 +226,7 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable();
 
         $variableIsString = $variable->isString();
+        $this->assertIsObject($variableIsString);
         $this->assertFalse($variableIsString->getValue());
     }
 
@@ -195,6 +241,7 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable($value);
 
         $variableIsString = $variable->isString();
+        $this->assertIsObject($variableIsString);
         $this->assertFalse($variableIsString->getValue());
     }
 
@@ -209,6 +256,7 @@ class VariableTest extends TestCase implements VariableTestInterface
         $variable = new Variable($value);
 
         $variableIsString = $variable->isString();
+        $this->assertIsObject($variableIsString);
         $this->assertTrue($variableIsString->getValue());
     }
 
@@ -239,6 +287,27 @@ class VariableTest extends TestCase implements VariableTestInterface
     public static function provideMethodIsBooleanTrue(): array
     {
         return self::getValuesBoolean();
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsIntegerFalse(): array
+    {
+        return array_merge(
+            self::getValuesBoolean(),
+            self::getValuesFloat(),
+            self::getValuesNull(),
+            self::getValuesString(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsIntegerTrue(): array
+    {
+        return self::getValuesInteger();
     }
 
     /**

@@ -71,6 +71,14 @@ class Variable implements VariableInterface
     /**
      * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
      */
+    public function isInteger(): VariableInterface
+    {
+        return $this->is("is_int");
+    }
+
+    /**
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
     public function isString(): VariableInterface
     {
         return $this->is("is_string");
