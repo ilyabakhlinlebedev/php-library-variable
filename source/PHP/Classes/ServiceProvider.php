@@ -23,10 +23,9 @@ declare(strict_types = 1);
 
 namespace IlyaBakhlinLebedev\Variable\Classes;
 
-use IlyaBakhlinLebedev\Variable\Interfaces\ServiceProvider as ServiceProviderInterface;
 use IlyaBakhlinLebedev\Variable\Interfaces\Variable as VariableInterface;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider implements ServiceProviderInterface
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * @return void
