@@ -54,12 +54,33 @@ interface VariableTest
     public function testMethodIsBooleanFalse(mixed $value): void;
 
     /**
-     * @param mixed $value
+     * @param bool $value
      *
      * @return void
      */
     #[DataProvider("provideMethodIsBooleanTrue")]
-    public function testMethodIsBooleanTrue(mixed $value): void;
+    public function testMethodIsBooleanTrue(bool $value): void;
+
+    /**
+     * @return void
+     */
+    public function testMethodIsStringDefault(): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsStringFalse")]
+    public function testMethodIsStringFalse(mixed $value): void;
+
+    /**
+     * @param string $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsStringTrue")]
+    public function testMethodIsStringTrue(string $value): void;
 
     /**
      * @return array
@@ -75,4 +96,14 @@ interface VariableTest
      * @return array
      */
     public static function provideMethodIsBooleanTrue(): array;
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsStringFalse(): array;
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsStringTrue(): array;
 }

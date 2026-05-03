@@ -174,6 +174,45 @@ class VariableTest extends TestCase implements VariableTestInterface
     }
 
     /**
+     * @return void
+     */
+    public function testMethodIsStringDefault(): void
+    {
+        $variable = new Variable();
+
+        $variableIsString = $variable->isString();
+        $this->assertFalse($variableIsString->getValue());
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsStringFalse")]
+    public function testMethodIsStringFalse(mixed $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsString = $variable->isString();
+        $this->assertFalse($variableIsString->getValue());
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return void
+     */
+    #[DataProvider("provideMethodIsStringTrue")]
+    public function testMethodIsStringTrue(string $value): void
+    {
+        $variable = new Variable($value);
+
+        $variableIsString = $variable->isString();
+        $this->assertTrue($variableIsString->getValue());
+    }
+
+    /**
      * @return array
      */
     public static function provideMethodGetValue(): array
@@ -200,5 +239,26 @@ class VariableTest extends TestCase implements VariableTestInterface
     public static function provideMethodIsBooleanTrue(): array
     {
         return self::getValuesBoolean();
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsStringFalse(): array
+    {
+        return array_merge(
+            self::getValuesBoolean(),
+            self::getValuesInteger(),
+            self::getValuesFloat(),
+            self::getValuesNull(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function provideMethodIsStringTrue(): array
+    {
+        return self::getValuesString();
     }
 }

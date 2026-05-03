@@ -33,6 +33,16 @@ class Variable implements VariableInterface
     private mixed $value;
 
     /**
+     * @param callable $function
+     *
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
+    private function is(callable $function): VariableInterface
+    {
+        return new self(call_user_func($function, $this->getValue()));
+    }
+
+    /**
      * @param mixed $value
      *
      * @return void
@@ -55,7 +65,15 @@ class Variable implements VariableInterface
      */
     public function isBoolean(): VariableInterface
     {
-        return new self(is_bool($this->getValue()));
+        return $this->is("is_bool");
+    }
+
+    /**
+     * @return \IlyaBakhlinLebedev\Variable\Interfaces\Variable
+     */
+    public function isString(): VariableInterface
+    {
+        return $this->is("is_string");
     }
 
     /**
